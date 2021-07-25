@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AncoraBehaviour : MonoBehaviour, Iinteractable
 {
@@ -16,10 +14,7 @@ public class AncoraBehaviour : MonoBehaviour, Iinteractable
     private void PuxarAncora()
     {
         if (navio.ancorado)
-        {
             navio.ancorado = false;
-            print("plim");
-        }
         else
             print("Já ta solto, Zé Mané");
     }

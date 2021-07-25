@@ -8,45 +8,50 @@ public class Player : MonoBehaviour
     [SerializeField, Range(0f, 10f)] float speed;
     [SerializeField] Animator anim;
 
+    Coroutine interact;
+    public bool movable;
+
     Vector2 direction;
 
     void Update()
     {
+        Camera.main.transform.rotation = Quaternion.Euler(Vector3.zero);
         direction = new Vector2(Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed).normalized;
 
         anim.SetBool("Andando",rb.velocity.magnitude != 0);
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        if (movable && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
             this.transform.up = direction;
         }
     }
     private void FixedUpdate()
     {
-        rb.velocity = direction;
+        if (movable)
+            rb.velocity = direction;
+        else
+            rb.velocity = Vector3.zero;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Iinteractable>() != null)
         {
-            StartCoroutine(Interact(other.gameObject));
+            if (interact != null)
+                StopCoroutine(interact);
+            interact = StartCoroutine(Interact(other.gameObject));
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Iinteractable>() != null)
         {
-            StopCoroutine(Interact(other.gameObject));
+            print("desliguei");
+            StopCoroutine(interact);
         }
     }
     private IEnumerator Interact(GameObject objeto)
     {
-        var teste = true;
         while(true)
         {
-            if (teste)
-            {
-                teste = false;
-            }
             if(Input.GetButtonDown("Fire1"))
             {
                 objeto.GetComponent<Iinteractable>().Interact();
