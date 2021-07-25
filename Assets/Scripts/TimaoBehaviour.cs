@@ -30,8 +30,10 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
     {
         if (!navio.ancorado)
         {
+            print(player.movable);
             controlando = !controlando;
             player.movable = !controlando;
+            print(player.movable);
         }
     }
 }
