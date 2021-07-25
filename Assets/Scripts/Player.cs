@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Rigidbody rb;
     [SerializeField, Range(0f, 10f)] float speed;
     [SerializeField] Animator anim;
-    GameObject objeto;
 
     Vector2 direction;
 
-    void Start()
-    {
-        
-    }
     void Update()
     {
         direction = new Vector2(Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed).normalized;
@@ -31,26 +26,30 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Iinteractable>() != null)
+        if (other.gameObject.GetComponent<Iinteractable>() != null)
         {
-            objeto = other.GetComponent<GameObject>();
-            StartCoroutine(Interact(objeto));
+            StartCoroutine(Interact(other.gameObject));
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Iinteractable>() != null)
         {
-            StartCoroutine("Interact");
+            StopCoroutine(Interact(other.gameObject));
         }
     }
     private IEnumerator Interact(GameObject objeto)
     {
+        var teste = true;
         while(true)
         {
+            if (teste)
+            {
+                teste = false;
+            }
             if(Input.GetButtonDown("Fire1"))
             {
-                objeto.GetComponent<CanhaoBehaviour>().Interact();
+                objeto.GetComponent<Iinteractable>().Interact();
             }
             yield return null;
         }

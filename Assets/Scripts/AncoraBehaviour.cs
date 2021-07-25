@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AncoraBehaviour : MonoBehaviour
+public class AncoraBehaviour : MonoBehaviour, Iinteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    Navio navio;
+    private void Awake()
     {
-        
+        navio = this.transform.GetComponentInParent<Navio>();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Interact()
     {
-        
+        PuxarAncora();
+    }
+    private void PuxarAncora()
+    {
+        if (navio.ancorado)
+        {
+            navio.ancorado = false;
+            print("plim");
+        }
+        else
+            print("Já ta solto, Zé Mané");
     }
 }
