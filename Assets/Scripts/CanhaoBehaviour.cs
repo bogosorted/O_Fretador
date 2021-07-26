@@ -6,6 +6,8 @@ public class CanhaoBehaviour : MonoBehaviour, Iinteractable
 {
     [SerializeField] private GameObject bolaCanhao;
     private GameObject bolaCanhaoClone;
+    [SerializeField] Rigidbody barcoRb;
+    [SerializeField] Navio navio;
     public void Interact()
     {
         Atirar();
@@ -14,5 +16,8 @@ public class CanhaoBehaviour : MonoBehaviour, Iinteractable
     {
         bolaCanhaoClone = Instantiate(bolaCanhao, transform.position, transform.rotation);
         Destroy(bolaCanhaoClone, 5f);
+        bolaCanhaoClone.GetComponent<BolaCanhao>().navio = navio;
+        bolaCanhaoClone.GetComponent<BolaCanhao>().barcoRb = barcoRb;
+
     }
 }

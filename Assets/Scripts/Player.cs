@@ -35,10 +35,9 @@ public class Player : MonoBehaviour
         {
             RaycastHit[] raycastInfo; 
             raycastInfo = Physics.CapsuleCastAll(transform.position, transform.position, 0.03f, Vector3.forward, Mathf.Infinity, LayerMask.GetMask("Interact"));
-            if(raycastInfo.Length > 0){
-                print("hi");
-                print(raycastInfo[0].transform.gameObject);
-                raycastInfo[0].transform.GetComponent<Iinteractable>().Interact();
+            if(raycastInfo.Length > 0)
+            {
+                raycastInfo[0].collider.transform.GetComponent<Iinteractable>().Interact();
             }
         }
     }

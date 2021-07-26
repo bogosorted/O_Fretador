@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Navio : MonoBehaviour
 {
-    [SerializeField, Range(0f, 10f)] float speed;
+    [SerializeField, Range(0f, 10f)] public float speed;
     public bool ancorado;
 
     void Start()
