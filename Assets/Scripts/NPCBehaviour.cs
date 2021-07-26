@@ -3,41 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NPCBehaviour : MonoBehaviour
+public class NPCBehaviour : MonoBehaviour, Iinteractable
 {
     public string[][] dialogues = {new string[] {"default text", "olá viajante bla bla fodasse", "próximo diálogo e talz", "pipipi popopo"},
                                    new string[] {"default text after mission", "aah vlw troxa ajuda nice", "diálogo no meio", "pipipipopopo fim"}};
     public int cmi = 0;
-    private bool newChat = true, typing = false;
+    private bool newChat = true, typing = false, onChat = false;
 
     [SerializeField]private Texture2D ownIcon;
     [SerializeField]private string triggerKey;
+    [SerializeField]private Player player;
+
+    [SerializeField] private GameObject dialogueBox;
+    private RawImage dialogueIcon;
+    private Text chatText;
     
     void Awake(){
+        chatText = dialogueBox.transform.GetChild(0).GetComponent<Text>();
+        dialogueIcon = dialogueBox.transform.GetChild(1).GetComponent<RawImage>();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(triggerKey) && !DialogueUIController.onChat){
-            StartCoroutine("NPCDialogue");
-        }
+        // if(Input.GetKeyDown(triggerKey) && !onChat){
+        //     StartCoroutine("NPCDialogue");
+        // }
         if(Input.GetKeyDown(KeyCode.Q)){
             cmi++;
             newChat = true;
         }
     }
 
+    public void Interact() {
+        if(!onChat){
+            StartCoroutine("NPCDialogue");
+        }
+    }
+
     public IEnumerator NPCDialogue(){
-        DialogueUIController.dialogueIcon.texture = ownIcon;
-        DialogueUIController.dialogueBox.SetActive(true);
-        DialogueUIController.onChat = true;
+        player.movable = false;
+        yield return new WaitForEndOfFrame();
+        dialogueIcon.texture = ownIcon;
+        dialogueBox.SetActive(true);
+        onChat = true;
         if(newChat) {
             for(int i = 1; i < dialogues[cmi].Length; i++){
                 var currentTyping = StartCoroutine(PrintDialogue(dialogues[cmi][i]));
                 yield return WaitForKeyDown(KeyCode.Space);
                 if(typing) {
                     StopCoroutine(currentTyping);
-                    DialogueUIController.chatText.text = dialogues[cmi][i];
+                    chatText.text = dialogues[cmi][i];
                     yield return new WaitForEndOfFrame();
                     yield return WaitForKeyDown(KeyCode.Space);
                 }
@@ -50,21 +65,22 @@ public class NPCBehaviour : MonoBehaviour
             yield return WaitForKeyDown(KeyCode.Space);
             if(typing) {
                 StopCoroutine(currentTyping);
-                DialogueUIController.chatText.text = dialogues[cmi][0];
+                chatText.text = dialogues[cmi][0];
                 yield return new WaitForEndOfFrame();
                 yield return WaitForKeyDown(KeyCode.Space);
             }
             yield return new WaitForEndOfFrame();
         }
-        DialogueUIController.dialogueBox.SetActive(false);
-        DialogueUIController.onChat = false;
+        dialogueBox.SetActive(false);
+        onChat = false;
+        player.movable = true;
     }
 
     public IEnumerator PrintDialogue(string message){
         typing = true;
-        DialogueUIController.chatText.text = "";
+        chatText.text = "";
         foreach(char letter in message) {
-            DialogueUIController.chatText.text += letter;
+            chatText.text += letter;
             yield return new WaitForSeconds(0.02f);
         }
         typing = false;
