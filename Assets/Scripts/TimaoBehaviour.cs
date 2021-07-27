@@ -8,18 +8,21 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
     bool controlando = false;
     GameObject goNavio;
     Navio navio;
+    float lastState;
     void Awake()
     {
+        lastState = 0;
         goNavio = this.transform.parent.gameObject;
         navio = goNavio.GetComponent<Navio>();
     }
     private void FixedUpdate()
     {
+        
         if (controlando)
-        {
-            var teste = Vector3.one;
-            teste += Vector3.right;
-            goNavio.transform.rotation = Quaternion.Euler(-Vector3.forward * Input.GetAxis("Horizontal") + goNavio.transform.rotation.eulerAngles); 
+            lastState = Mathf.Clamp(lastState +Input.GetAxisRaw("Horizontal")/30,-1,1);
+        if(!navio.ancorado){
+            goNavio.transform.rotation = Quaternion.Euler(Vector3.forward * lastState + goNavio.transform.rotation.eulerAngles); 
+            goNavio.transform.rotation = Quaternion.Euler(new Vector3(0,lastState * 10 - 180,goNavio.transform.rotation.eulerAngles.z));
         }
     }
     public void Interact()
@@ -30,10 +33,8 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
     {
         if (!navio.ancorado)
         {
-            print(player.movable);
             controlando = !controlando;
             player.movable = !controlando;
-            print(player.movable);
         }
     }
 }

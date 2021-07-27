@@ -13,12 +13,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Camera.main.transform.rotation = Quaternion.Euler(Vector3.zero);
         direction = new Vector2(Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed).normalized;
         anim.SetBool("Andando",rb.velocity.magnitude != 0);
         if (movable && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
-            this.transform.up = direction;
+           this.transform.up = direction;
         }
         CheckInteract();
     }
