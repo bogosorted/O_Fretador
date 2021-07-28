@@ -5,12 +5,23 @@ using UnityEngine;
 public class CanhaoBehaviour : MonoBehaviour, Iinteractable
 {
     [SerializeField] private GameObject bolaCanhao;
+    [SerializeField] private Player player;
     private GameObject bolaCanhaoClone;
     [SerializeField] Rigidbody barcoRb;
     [SerializeField] Navio navio;
+    private bool ativado;
     public void Interact()
     {
-        Atirar();
+        if(ativado)
+        {
+            Atirar();
+            ativado = false;
+        }
+        else if(player.carregandoBola)
+        {
+            ativado = true;
+            player.carregandoBola = false;
+        }
     }
     private void Atirar()
     {

@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField, Range(0f, 10f)] float speed;
     [SerializeField] Animator anim;
     Coroutine interact;
-    public bool movable;
+    public bool movable, carregandoBola;
     Vector2 direction;
 
     void Update()
