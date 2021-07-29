@@ -22,15 +22,16 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PixelTextureGrid_128
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: _EMISSION _ENVIRONMENTREFLECTIONS_OFF _NORMALMAP _OCCLUSIONMAP
-    _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECULARHIGHLIGHTS_OFF _SPECULAR_SETUP
-  m_LightmapFlags: 2
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _ENVIRONMENTREFLECTIONS_OFF _NORMALMAP _OCCLUSIONMAP
+    _SPECULARHIGHLIGHTS_OFF _SPECULAR_SETUP
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap:
-    RenderType: Opaque
-  disabledShaderPasses: []
+    RenderType: Transparent
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -94,12 +95,12 @@ Material:
     - PixelSnap: 0
     - _AlphaClip: 0
     - _Blend: 1
-    - _BumpScale: 7
+    - _BumpScale: 1.76
     - _ColorMask: 15
     - _Cull: 2
     - _Cutoff: 0.254
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _Emission: 1
     - _EnableExternalAlpha: 0
     - _EnvironmentReflections: 0
@@ -125,13 +126,13 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Surface: 0
+    - _Surface: 1
     - _UVSec: 0
     - _UseUIAlphaClip: 0
     - _WorkflowMode: 0
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+    - _BaseColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 0.007843138}
     - _EmissionColor: {r: 0.6712002, g: 0.6712002, b: 0.6712002, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

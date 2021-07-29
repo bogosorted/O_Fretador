@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        direction = new Vector2(Input.GetAxisRaw("Horizontal") * speed, Input.GetAxisRaw("Vertical") * speed).normalized;
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized;
         anim.SetBool("Andando",rb.velocity.magnitude != 0);
         if (movable && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         if (movable)
-            rb.velocity = direction;
+            rb.velocity = direction * speed;
         else
             rb.velocity = Vector3.zero;
     }

@@ -7,6 +7,7 @@ public class RecarregarCanhao : MonoBehaviour, Iinteractable
     [SerializeField] Player player;
     public void Interact()
     {
+        print("aaewaeaw");
         player.carregandoBola = true;
     }
 }

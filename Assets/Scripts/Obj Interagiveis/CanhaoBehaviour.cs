@@ -10,15 +10,18 @@ public class CanhaoBehaviour : MonoBehaviour, Iinteractable
     [SerializeField] Rigidbody barcoRb;
     [SerializeField] Navio navio;
     private bool ativado;
+    
     public void Interact()
     {
         if(ativado)
         {
             Atirar();
+            print("FOGO!");
             ativado = false;
         }
         else if(player.carregandoBola)
         {
+            print("CARREGANDO!");
             ativado = true;
             player.carregandoBola = false;
         }
