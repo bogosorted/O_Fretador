@@ -8,6 +8,6 @@ public class Navio : MonoBehaviour
     void FixedUpdate()
     {
         if (!ancorado)
-            this.transform.Translate(Vector3.right * speed / 100, Space.Self);
+            this.transform.parent.Translate(Vector3.up * speed / 100, Space.Self);
     }
 }
