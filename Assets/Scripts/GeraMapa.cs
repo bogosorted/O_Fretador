@@ -28,7 +28,7 @@ public class GeraMapa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        correct = Vector3.Dot(aguaAtual.transform.up, barco.transform.up) > 0 ? 1 : -1;
+        correct = Vector3.Dot(aguaAtual.transform.up, barco.transform.right) > 0 ? 1 : -1;
         if (!navio.ancorado)
             distancia -= navio.speed * correct * Time.deltaTime;
         if (distancia <= 0)

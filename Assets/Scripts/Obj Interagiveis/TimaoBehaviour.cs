@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TimaoBehaviour : MonoBehaviour, Iinteractable
 {
     [SerializeField] Player player;
+
     bool controlando = false;
     GameObject goNavio;
     Navio navio;
@@ -17,12 +16,13 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
     }
     private void FixedUpdate()
     {
-        
+
         if (controlando)
-            lastState = Mathf.Clamp(lastState +Input.GetAxisRaw("Horizontal")/30,-1,1);
-        if(!navio.ancorado){
-            goNavio.transform.rotation = Quaternion.Euler(Vector3.forward * lastState + goNavio.transform.rotation.eulerAngles); 
-            goNavio.transform.rotation = Quaternion.Euler(new Vector3(0,lastState * 10 - 180,goNavio.transform.rotation.eulerAngles.z));
+            lastState = Mathf.Clamp(lastState + -Input.GetAxisRaw("Horizontal") / 30, -1, 1);
+        if (!navio.ancorado)
+        {
+            goNavio.transform.parent.rotation = Quaternion.Euler(Vector3.forward * lastState + goNavio.transform.parent.rotation.eulerAngles);
+            goNavio.transform.localRotation = Quaternion.Euler(new Vector3(0, lastState * 10 - 180, goNavio.transform.localRotation.eulerAngles.z));
         }
     }
     public void Interact()
