@@ -14,6 +14,7 @@ public class Floater : MonoBehaviour
         float waveHeigth = WaveManager.instance.GetWaveHeight(transform.position.x);
         if(transform.position.y < waveHeigth){
             float displacementMultipler = Mathf.Clamp01((waveHeigth - transform.position.y) / depthBeforeSubmerged) * displacementAmount;
+            //if(displacementMultipler > 0.1f)
             rb.AddForceAtPosition(new Vector3(0f, Mathf.Abs(Physics.gravity.y) * displacementAmount, 0f), transform.position, ForceMode.Acceleration);
             rb.AddForce(displacementMultipler * -rb.velocity * waterDrag * Time.fixedDeltaTime, ForceMode.VelocityChange);
             rb.AddTorque(displacementMultipler * -rb.angularVelocity * waterAngularDrag * Time.fixedDeltaTime, ForceMode.VelocityChange);
