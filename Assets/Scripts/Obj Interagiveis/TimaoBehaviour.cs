@@ -26,12 +26,13 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
         if (!Navio.ancorado)
         {
             Quaternion rot = goNavio.transform.parent.rotation;
-            goNavio.transform.parent.rotation = new Quaternion(rot.x, rot.y, Mathf.Clamp(rot.z, -0.38f, 0.38f), rot.w);
+            goNavio.transform.parent.rotation = new Quaternion(rot.x, rot.y, Mathf.Clamp(rot.z, -0.36f, 0.36f), rot.w);
 
             lastAngle = goNavio.transform.parent.rotation;
 
             actualAngulation = (0.137f * lastAngle.z * 10 * (-lastAngle.z * 10) + 2);
-            if (actualAngulation < 0.1f)
+            print(actualAngulation);
+            if (actualAngulation < 0.225f)
                 lastState = 0;
         }
     }
