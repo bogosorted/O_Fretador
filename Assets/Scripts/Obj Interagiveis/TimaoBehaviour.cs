@@ -27,16 +27,16 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
         if (!Navio.ancorado)
         {
             goNavio.transform.parent.rotation = Quaternion.Euler(Vector3.forward * lastState + goNavio.transform.parent.rotation.eulerAngles);
-            print(lastState);
             goNavio.transform.localRotation = Quaternion.Euler(new Vector3(0, lastState * actualAngulation * 10 - 180, goNavio.transform.localRotation.eulerAngles.z));
 
             Quaternion rot = goNavio.transform.parent.rotation;
-            goNavio.transform.parent.rotation = new Quaternion(rot.x, rot.y, Mathf.Clamp(rot.z, -0.38f, 0.38f), rot.w);
+            goNavio.transform.parent.rotation = new Quaternion(rot.x, rot.y, Mathf.Clamp(rot.z, -0.36f, 0.36f), rot.w);
 
             lastAngle = goNavio.transform.parent.rotation;
 
             actualAngulation = (0.137f * lastAngle.z * 10 * (-lastAngle.z * 10) + 2);
-            if (actualAngulation < 0.1f)
+            print(actualAngulation);
+            if (actualAngulation < 0.225f)
                 lastState = 0;
         }
     }
