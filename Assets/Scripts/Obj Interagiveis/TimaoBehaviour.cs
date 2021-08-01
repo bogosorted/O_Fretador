@@ -5,7 +5,7 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
     [SerializeField] Player player;
     public static bool travaAng = false;
 
-    bool controlando = false;
+    public bool controlando = false;
     GameObject goNavio;
     Navio navio;
     float lastState;
