@@ -18,9 +18,9 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
         goNavio = this.transform.parent.gameObject;
         navio = goNavio.GetComponent<Navio>();
     }
+    
     private void FixedUpdate()
     {
-        
         if (controlando)
             lastState = Mathf.Clamp(lastState + -Input.GetAxisRaw("Horizontal")*1f / 30, -1, 1);
         if (!navio.ancorado)
@@ -38,10 +38,7 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
             actualAngulation = (0.137f * lastAngle.z*10 * (-lastAngle.z*10)+ 2);
             if (actualAngulation < 0.1f)
                 lastState = 0;
-
         }
-                
-        
     }
     public void Interact()
     {
