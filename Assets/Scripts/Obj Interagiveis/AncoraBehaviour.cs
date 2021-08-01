@@ -3,6 +3,7 @@
 public class AncoraBehaviour : MonoBehaviour, Iinteractable
 {
     Navio navio;
+    [SerializeField] AudioSource barulho;
     private void Awake()
     {
         navio = this.transform.GetComponentInParent<Navio>();
@@ -13,6 +14,7 @@ public class AncoraBehaviour : MonoBehaviour, Iinteractable
     }
     private void PuxarAncora()
     {
+        barulho.Play();
         if (Navio.ancorado)
             Navio.ancorado = false;
         else

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CanhaoBehaviour : MonoBehaviour, Iinteractable
 {
     [SerializeField] private GameObject bolaCanhao;
+    [SerializeField] AudioSource som;
     [SerializeField] private Player player;
     private GameObject bolaCanhaoClone;
     [SerializeField] Rigidbody barcoRb;
@@ -16,7 +17,7 @@ public class CanhaoBehaviour : MonoBehaviour, Iinteractable
         if(ativado)
         {
             Atirar();
-            print("FOGO!");
+            som.Play();
             ativado = false;
         }
         else if(player.carregandoBola)
