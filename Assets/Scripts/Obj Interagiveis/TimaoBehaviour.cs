@@ -11,7 +11,6 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
     float lastState;
 
     Quaternion lastAngle;
-    float actualAngulation;
     void Awake()
     {
         lastState = 0;
@@ -26,10 +25,6 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
             lastState = Mathf.Clamp(lastState + -Input.GetAxisRaw("Horizontal") * 1f / 30, -1, 1);
         if (!Navio.ancorado)
         {
-            goNavio.transform.parent.rotation = Quaternion.Euler(Vector3.forward * lastState + goNavio.transform.parent.rotation.eulerAngles);
-            print(lastState);
-            goNavio.transform.localRotation = Quaternion.Euler(new Vector3(0, lastState * actualAngulation * 10 - 180, goNavio.transform.localRotation.eulerAngles.z));
-
             Quaternion rot = goNavio.transform.parent.rotation;
             goNavio.transform.parent.rotation = new Quaternion(rot.x, rot.y, Mathf.Clamp(rot.z, -0.38f, 0.38f), rot.w);
 
