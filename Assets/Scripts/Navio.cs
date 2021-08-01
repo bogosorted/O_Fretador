@@ -76,7 +76,6 @@ public class Navio : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        print("aaa");
         if(col.tag == "rock"){
             // this.transform.parent.GetComponent<Rigidbody>().isKinematic = false;
             Vector3 diff = this.transform.parent.position - col.transform.position;

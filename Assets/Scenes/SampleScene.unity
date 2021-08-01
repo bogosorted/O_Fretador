@@ -1100,7 +1100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624409053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.24, z: -0.48}
+  m_LocalPosition: {x: 0, y: 8.24, z: -0.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 777958700}
@@ -1621,8 +1621,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d175333c18963b2459d6d6e06558631b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1660334524}
   controlando: 0
+  player: {fileID: 1660334524}
+  voltinha: 0.02
 --- !u!65 &804378006
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2032,8 +2033,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0077330247, y: 0.12597315, z: 0.08375921}
-  m_Center: {x: 0.07330409, y: 0.00039439587, z: 0.040309325}
+  m_Size: {x: 0.03291246, y: 0.12597315, z: 0.04420339}
+  m_Center: {x: -0.04591454, y: 0.0003943959, z: 0.020531388}
 --- !u!1 &1233900748
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,18 +2258,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2706639019585764038, guid: 8d143f426b54f3a4e836a2c6ceee1258,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10.000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706639019585764038, guid: 8d143f426b54f3a4e836a2c6ceee1258,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.99999994
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706639019585764038, guid: 8d143f426b54f3a4e836a2c6ceee1258,
-        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000000059604645
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2706639019585764038, guid: 8d143f426b54f3a4e836a2c6ceee1258,
         type: 3}
@@ -3011,7 +3002,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056671525}
-  m_Material: {fileID: 13400000, guid: dff75a68f4e91cd439e7ac4ea109cfec, type: 2}
+  m_Material: {fileID: 13400000, guid: f61d475e0c3c47c4b889a5d3ef72368e, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
