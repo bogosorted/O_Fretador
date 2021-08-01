@@ -54,7 +54,7 @@ public class NPCBehaviour : MonoBehaviour, Iinteractable
     }
 
     public IEnumerator NPCDialogue(){
-        player.movable = false;
+        Player.movable = false;
         yield return new WaitForEndOfFrame();
         dialogueIcon.texture = ownIcon;
         dialogueBox.SetActive(true);
@@ -88,7 +88,7 @@ public class NPCBehaviour : MonoBehaviour, Iinteractable
         }
         dialogueBox.SetActive(false);
         onChat = false;
-        player.movable = true;
+        Player.movable = true;
     }
 
     public IEnumerator PrintDialogue(string message){

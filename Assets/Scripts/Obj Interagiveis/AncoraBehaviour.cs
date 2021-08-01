@@ -13,8 +13,8 @@ public class AncoraBehaviour : MonoBehaviour, Iinteractable
     }
     private void PuxarAncora()
     {
-        if (navio.ancorado)
-            navio.ancorado = false;
+        if (Navio.ancorado)
+            Navio.ancorado = false;
         else
             print("Já ta solto, Zé Mané");
     }

@@ -166,5 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d227704462c9a354999852779c526f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barco: {fileID: 0}
   instaciavel: 1
+  certo: 1
+  barco: {fileID: 0}

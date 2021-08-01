@@ -7,7 +7,7 @@ public class Navio : MonoBehaviour
 {
     [SerializeField, Range(0f, 10f)] public float speed;
    // [SerializeField, Range(0f, 8f)] private int life;
-    public bool ancorado;
+    public static bool ancorado = true;
     public Player pl;
     public GameObject lifeBarFill;
     public Vector3 lifeBarFullSize;

@@ -2,7 +2,8 @@
 
 public class Player : MonoBehaviour
 {
-    public bool movable, carregandoBola;
+    public static bool movable = true;
+    public bool carregandoBola;
 
     [SerializeField] Rigidbody rb;
     [SerializeField, Range(0f, 10f)] float speed, distanciaRampa;
@@ -24,16 +25,15 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         hit = Physics.CapsuleCastAll(transform.position, transform.position, distanciaRampa, Vector3.forward, Mathf.Infinity, LayerMask.GetMask("Rampa"));
-        if (hit.Length > 0)
-        {
-            rb.AddForce(Vector3.forward * 30, ForceMode.Force);
-        }
-        else
-            rb.AddForce(Vector3.forward * 300, ForceMode.Force);
 
         if (movable)
-
+        {
+            if (hit.Length > 0)
+                rb.AddForce(Vector3.forward * 30, ForceMode.Force);
+            else
+                rb.AddForce(Vector3.forward * 300, ForceMode.Force);
             rb.velocity = direction * speed;
+        }
         else
             rb.velocity = Vector3.zero;
     }

@@ -2,7 +2,8 @@
 
 public class WatherRouteGen : MonoBehaviour
 {
-    public bool instaciavel; 
+    public static bool ini = false;
+    public bool instaciavel, certo = true;
 
     [SerializeField] GameObject barco;
 
@@ -27,11 +28,26 @@ public class WatherRouteGen : MonoBehaviour
         if (other.GetComponent<Navio>() != null && instaciavel)
         {
             instaciavel = false;
-            if (GeraMapa.mapa == 0)
+            if (GeraMapa.mapa == 0 || !certo)
                 dist = sr.size.y;
             else
-                dist = sr.size.y * 3/2 + 5;// 5 = metade do tamanho da ilha
-            Instantiate(GeraMapa.staticMapas[GeraMapa.mapa], dist * GeraMapa.correct * this.transform.up + this.transform.position, this.transform.rotation);
+                dist = sr.size.y * 3 / 2 + 5;// 5 = metade do tamanho da ilha
+
+            if (ini && certo)
+            {
+                Instantiate(GeraMapa.staticMapas[2], dist * GeraMapa.correct * this.transform.up + this.transform.position,Quaternion.identity);
+                ini = false;
+            }
+            else
+            {
+
+                var novo = Instantiate(GeraMapa.staticMapas[certo ? GeraMapa.mapa : 0], dist * GeraMapa.correct * this.transform.up + this.transform.position, this.transform.rotation);
+
+                if (novo.GetComponent<WatherRouteGen>() != null)
+                {
+                    novo.GetComponent<WatherRouteGen>().certo = certo;
+                }
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
