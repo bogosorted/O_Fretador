@@ -19,13 +19,16 @@ public class NPCBehaviour : MonoBehaviour, Iinteractable
                                                  "Você terá que manter esse ciclo, e a quantidade de \nilhas vai aumentar enquanto você der conta do trabalho",
                                                  "E não se preocupe, seu barco será reparado sempre \nque você passar por aqui",
                                                  "Você pode partir agora, boa sorte"},
-                                    new string[]{"Bom trabalho! \nA próxima ilha fica ao Direção da última."}};
+                                    new string[]{"Bom trabalho! \nA próxima ilha fica ao Direção da última",
+                                                 "Você só precisa ir $"}};
     private string[] defaultTips =  new string[]{"Os canhões de seu barco são ótimos para se proteger \nponha bolas de canhão e mande os piratas pra longe",
                                                  "Quando ver uma pedra a frente, tente esquivar dela \nutilizando o timão",
                                                  "Rachaduras vão se abrir no seu barco se ele sofrer \nmuitos danos, repare elas para não afundar"};
     private int tipIndex = 0;
     public int cmi = 0;
     private bool newChat = true, typing = false, onChat = false;
+    private string[] directions = new string[] {"Oeste","Norte","Leste","Sul"};
+    private List<int> direcoesMsm =  new List<int>(){0, 1, 1, 2, 3, 1};
 
     [SerializeField]private Texture2D ownIcon;
     [SerializeField]private Player player;
@@ -41,10 +44,10 @@ public class NPCBehaviour : MonoBehaviour, Iinteractable
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q)){
-            cmi++;
-            newChat = true;
-        }
+        // if(Input.GetKeyDown(KeyCode.Q)){
+        //     cmi++;
+        //     newChat = true;
+        // }
     }
 
     public void Interact() {
@@ -61,12 +64,24 @@ public class NPCBehaviour : MonoBehaviour, Iinteractable
         onChat = true;
         if(newChat) {
             for(int i = 0; i < dialogues[cmi].Length; i++){
-                var currentTyping = StartCoroutine(PrintDialogue(dialogues[cmi][i]));
+                string toDisplay = dialogues[cmi][i];
+                if(dialogues[cmi][i].Contains("$")) {
+                    string resto = "";
+                    for(int j = 0; j < direcoesMsm.Count; j++){
+                        if(j == direcoesMsm.Count - 1){
+                            resto += "ao " + directions[direcoesMsm[j]];
+                            break;
+                        }
+                        resto += "ao " + directions[direcoesMsm[j]] + ", depois ";
+                    }
+                    toDisplay = toDisplay.Replace("$", resto);
+                }
+                var currentTyping = StartCoroutine(PrintDialogue(toDisplay));
                 yield return WaitForKeyDown(KeyCode.Space);
                 if(typing) {
                     StopCoroutine(currentTyping);
                     // string wholeMsg = dialogues[cmi][i].Replace("$", "\n");
-                    chatText.text = dialogues[cmi][i];
+                    chatText.text = toDisplay;
                     yield return new WaitForEndOfFrame();
                     yield return WaitForKeyDown(KeyCode.Space);
                 }
@@ -95,10 +110,6 @@ public class NPCBehaviour : MonoBehaviour, Iinteractable
         typing = true;
         chatText.text = "";
         foreach(char letter in message) {
-            // if(letter == '$'){
-            //     chatText.text += "\n";
-            //     continue;
-            // }
             chatText.text += letter;
             yield return new WaitForSeconds(0.02f);
         }
