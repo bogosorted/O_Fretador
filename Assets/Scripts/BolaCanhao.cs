@@ -9,6 +9,7 @@ public class BolaCanhao : MonoBehaviour
     float speed = 20;
     void Update()
     {
-        transform.Translate(new Vector3(barcoRb.velocity.y/navio.speed, speed, 0) * Time.deltaTime);
+        transform.Translate((Vector3.up - Vector3.right * (!Navio.ancorado ? 0.140f : 0)) * speed * Time.deltaTime);
+        print(barcoRb.velocity.y);
     }
 }
