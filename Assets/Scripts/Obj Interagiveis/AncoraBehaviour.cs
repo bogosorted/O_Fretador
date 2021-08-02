@@ -5,6 +5,7 @@ public class AncoraBehaviour : MonoBehaviour, Iinteractable
     Navio navio;
     [SerializeField] GameObject space;
     [SerializeField] AudioSource barulho;
+    [SerializeField] GameObject anchor,chain;
 
 
     private void OnTriggerEnter(Collider other)
@@ -31,7 +32,11 @@ public class AncoraBehaviour : MonoBehaviour, Iinteractable
     {
         barulho.Play();
         if (Navio.ancorado)
+        {
             Navio.ancorado = false;
+            anchor.SetActive(true);
+            chain.SetActive(false);
+        }
         else
             print("Já ta solto, Zé Mané");
     }
