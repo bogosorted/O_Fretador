@@ -2317,6 +2317,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 374efc121ebb7f7408726dda41de3765, type: 3}
+--- !u!1 &723742842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 216706244437526564, guid: 374efc121ebb7f7408726dda41de3765,
+    type: 3}
+  m_PrefabInstance: {fileID: 723742841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &777958695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,7 +2642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanciaSegundos10: 1
   barco: {fileID: 777958695}
-  start: {fileID: 0}
+  start: {fileID: 723742842}
   mapas:
   - {fileID: 8619413397369214243, guid: 363b3d67c438c4943b2746f5a13cb187, type: 3}
   - {fileID: 216706244437526564, guid: 374efc121ebb7f7408726dda41de3765, type: 3}
