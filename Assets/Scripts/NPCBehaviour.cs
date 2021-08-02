@@ -28,7 +28,6 @@ public class NPCBehaviour : MonoBehaviour, Iinteractable
     public int cmi = 0;
     private bool newChat = true, typing = false, onChat = false;
     private string[] directions = new string[] {"Oeste","Norte","Leste","Sul"};
-    private List<int> direcoesMsm =  new List<int>(){0, 1, 1, 2, 3, 1};
 
     [SerializeField]private Texture2D ownIcon;
     [SerializeField]private Player player;
@@ -67,12 +66,12 @@ public class NPCBehaviour : MonoBehaviour, Iinteractable
                 string toDisplay = dialogues[cmi][i];
                 if(dialogues[cmi][i].Contains("$")) {
                     string resto = "";
-                    for(int j = 0; j < direcoesMsm.Count; j++){
-                        if(j == direcoesMsm.Count - 1){
-                            resto += "ao " + directions[direcoesMsm[j]];
+                    for(int j = 0; j < GeraMapa.direcao.Count; j++){
+                        if(j == GeraMapa.direcao.Count - 1){
+                            resto += "ao " + directions[GeraMapa.direcao[j]];
                             break;
                         }
-                        resto += "ao " + directions[direcoesMsm[j]] + ", depois ";
+                        resto += "ao " + directions[GeraMapa.direcao[j]] + ", depois ";
                     }
                     toDisplay = toDisplay.Replace("$", resto);
                 }
