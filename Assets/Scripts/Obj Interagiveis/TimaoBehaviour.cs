@@ -2,14 +2,14 @@
 
 public class TimaoBehaviour : MonoBehaviour, Iinteractable
 {
-    [SerializeField] Player player;
-    public static bool travaAng = false;
-
     public bool controlando = false;
+
+    [SerializeField] Player player;
+    [SerializeField] float voltinha;
+
     GameObject goNavio;
     Navio navio;
     float lastState;
-
     Quaternion lastAngle;
     float actualAngulation;
     [SerializeField] GameObject space;
@@ -23,31 +23,28 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
         if(other.gameObject.tag == "Player")
             space.SetActive(false);
     }
+
     void Awake()
     {
         lastState = 0;
-        lastAngle = Quaternion.identity;
         goNavio = this.transform.parent.gameObject;
         navio = goNavio.GetComponent<Navio>();
     }
-
     private void FixedUpdate()
     {
         if (controlando)
-            lastState = Mathf.Clamp(lastState + -Input.GetAxisRaw("Horizontal") * 1f / 30, -1, 1);
+            lastState = Mathf.Clamp(lastState - Input.GetAxisRaw("Horizontal") / 30, -1, 1);
         if (!Navio.ancorado)
         {
             goNavio.transform.parent.rotation = Quaternion.Euler(Vector3.forward * lastState + goNavio.transform.parent.rotation.eulerAngles);
-            goNavio.transform.localRotation = Quaternion.Euler(new Vector3(0, lastState * actualAngulation * 10 - 180, goNavio.transform.localRotation.eulerAngles.z));
+            goNavio.transform.localRotation = Quaternion.Euler(new Vector3(0, lastState * 10 - 180, goNavio.transform.localRotation.eulerAngles.z));
+        }
 
-            Quaternion rot = goNavio.transform.parent.rotation;
-            goNavio.transform.parent.rotation = new Quaternion(rot.x, rot.y, Mathf.Clamp(rot.z, -0.36f, 0.36f), rot.w);
-
-            lastAngle = goNavio.transform.parent.rotation;
-
-            actualAngulation = (0.137f * lastAngle.z * 10 * (-lastAngle.z * 10) + 2);
-            print(actualAngulation);
-            if (actualAngulation < 0.225f)
+        if (Input.GetAxisRaw("Horizontal") == 0)
+        {
+            if (Mathf.Abs(lastState) - voltinha > voltinha)
+                lastState += (lastState != 0 ? lastState > 0 ? -voltinha : voltinha : 0);
+            else
                 lastState = 0;
         }
     }

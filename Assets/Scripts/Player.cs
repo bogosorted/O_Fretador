@@ -8,12 +8,14 @@ public class Player : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField, Range(0f, 10f)] float speed, distanciaRampa;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject bolaCanhao;
 
     Vector2 direction;
     RaycastHit[] raycastInfo, hit;
 
     void Update()
     {
+        bolaCanhao.SetActive(carregandoBola);
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         anim.SetBool("Andando", direction != Vector2.zero && movable);
 
