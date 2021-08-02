@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CanhaoBehaviour : MonoBehaviour, Iinteractable
 {
+    [SerializeField] bool esquerda;
     [SerializeField] private GameObject bolaCanhao;
     [SerializeField] AudioSource som;
     [SerializeField] private Player player;
@@ -43,6 +44,7 @@ public class CanhaoBehaviour : MonoBehaviour, Iinteractable
     {
         bolaCanhaoClone = Instantiate(bolaCanhao, transform.position, transform.rotation);
         Destroy(bolaCanhaoClone, 5f);
+        bolaCanhaoClone.GetComponent<BolaCanhao>().esquerda = esquerda;
         bolaCanhaoClone.GetComponent<BolaCanhao>().navio = navio;
         bolaCanhaoClone.GetComponent<BolaCanhao>().barcoRb = barcoRb;
 
