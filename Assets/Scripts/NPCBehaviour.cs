@@ -40,6 +40,10 @@ public class NPCBehaviour : MonoBehaviour, Iinteractable
         chatText = dialogueBox.transform.GetChild(0).GetComponent<Text>();
         dialogueIcon = dialogueBox.transform.GetChild(1).GetComponent<RawImage>();
     }
+    private void Start()
+    {
+        Interact();
+    }
 
     void Update()
     {
