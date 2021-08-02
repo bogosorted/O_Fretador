@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -802,6 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61648bf12139cd4f8dcf59e80e39dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  esquerda: 0
   bolaCanhao: {fileID: 920800971857597223, guid: 1f9bc93f8779cf5499420ea305314951,
     type: 3}
   som: {fileID: 402378662}
@@ -2915,6 +2916,7 @@ GameObject:
   - component: {fileID: 1233900751}
   - component: {fileID: 1233900750}
   - component: {fileID: 1233900749}
+  - component: {fileID: 1233900753}
   m_Layer: 5
   m_Name: Canvas (1)
   m_TagString: Untagged
@@ -3003,6 +3005,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1233900753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233900748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 472de965a07e80146b91ecd27f8338f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TypesF:
+  - {fileID: 1283942624906729137, guid: 89ab8b51e87c5c24f8c633e7b21e4715, type: 3}
+  - {fileID: 818328014522740145, guid: c6ee5394d5fede04e9cc6f0eae7ea25c, type: 3}
 --- !u!1 &1293086806
 GameObject:
   m_ObjectHideFlags: 0
@@ -3590,6 +3607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61648bf12139cd4f8dcf59e80e39dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  esquerda: 0
   bolaCanhao: {fileID: 920800971857597223, guid: 1f9bc93f8779cf5499420ea305314951,
     type: 3}
   som: {fileID: 402378662}
