@@ -12,6 +12,17 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
 
     Quaternion lastAngle;
     float actualAngulation;
+    [SerializeField] GameObject space;
+     private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+            space.SetActive(true);
+    }
+      private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+            space.SetActive(false);
+    }
     void Awake()
     {
         lastState = 0;
