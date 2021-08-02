@@ -10,6 +10,20 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
     GameObject goNavio;
     Navio navio;
     float lastState;
+    Quaternion lastAngle;
+    float actualAngulation;
+    [SerializeField] GameObject space;
+     private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+            space.SetActive(true);
+    }
+      private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+            space.SetActive(false);
+    }
+
     void Awake()
     {
         lastState = 0;
@@ -42,6 +56,7 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
     {
         if (!Navio.ancorado)
         {
+            space.SetActive(false);
             controlando = !controlando;
             Player.movable = !controlando;
         }

@@ -11,6 +11,18 @@ public class CanhaoBehaviour : MonoBehaviour, Iinteractable
     [SerializeField] Rigidbody barcoRb;
     [SerializeField] Navio navio;
     private bool ativado;
+    [SerializeField] GameObject space;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+            space.SetActive(true);
+    }
+      private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+            space.SetActive(false);
+    }
     
     public void Interact()
     {
