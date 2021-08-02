@@ -56,6 +56,7 @@ public class TimaoBehaviour : MonoBehaviour, Iinteractable
     {
         if (!Navio.ancorado)
         {
+            space.SetActive(false);
             controlando = !controlando;
             Player.movable = !controlando;
         }
